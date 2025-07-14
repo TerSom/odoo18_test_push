@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- list view -->
+        <record id="view_extrakulikuler_sekolah_list" model="ir.ui.view">
+            <field name="name">extrakulikuler.sekolah.list</field>
+            <field name="model">exktrakulikuler.sekolah</field>
+            <field name="arch" type="xml">
+                <list name="extrakulikuler">
+                    <field name="nama"></field>
+                    <field name="umur"></field>
+                    <field name="Peseta"></field>
+                    <field name="bayarMasuk"></field>
+                    <field name="totalHarga"></field>
+                    <field name="active"></field>
+                </list>
+            </field>
+        </record>
+
+        <!-- search view -->
+        <record id="view_extrakulikuler_sekolah_search" model="ir.ui.view">
+            <field name="name">extrakulikuler.sekolah.search</field>
+            <field name="model">exktrakulikuler.sekolah</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="nama"></field>
+                    <filter string="aktif" name="active" domain="[('active', '=', True)]"></filter>
+                    <filter string="arsip" name="nonactive" domain="[('active', '=', False)]"></filter>
+                    <group string="Groub By">
+                        <filter string="dibawah 20" name="under20" domain="[('umur','&lt;', 20)]"></filter>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- form view -->
+        <record id="view_extrakilikuler_sekolah_form" model="ir.ui.view">
+            <field name="name">extrakulikuler.sekolah.form</field>
+            <field name="model">exktrakulikuler.sekolah</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="nama"></field>
+                            <field name="umur"></field>
+                            <field name="Peseta"></field>
+                            <field name="bayarMasuk"></field>
+                            <field name="totalHarga"></field>
+                            <field name="active"></field>
+
+                        </group>
+                        <notebook>
+                            <page string="Nama peserta">
+                                <field name="siswa_ids"></field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- graph -->
+        <record id="view_extrakulikuler_sekolah_graph" model="ir.ui.view">
+            <field name="name">extrakulikuler.sekolah.graph</field>
+            <field name="model">exktrakulikuler.sekolah</field>
+            <field name="arch" type="xml">
+                <graph string="analisis peserta">
+                    <field name="nama"></field>
+                </graph>
+            </field>
+        </record>
+
+        <!-- action -->
+        <record id="action_extrakulikuler_sekolah" model="ir.actions.act_window">
+            <field name="name">Nama Extrakulikuler</field>
+            <field name="res_model">exktrakulikuler.sekolah</field>
+            <field name="view_mode">list,form,graph,search</field>
+        </record>
+
+        <menuitem
+            id="menu_extrakulikuler_sekolah"
+            name="Extrakulikuler Sekolah"
+            parent="menu_Database_root"
+            action="action_extrakulikuler_sekolah"
+            sequence="3"
+        />
+    </data>
+</odoo>

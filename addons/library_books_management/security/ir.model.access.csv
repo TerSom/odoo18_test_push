@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_book,book.book,model_book,base.group_user,1,1,1,1
+access_book_author,book.author,model_book_author,base.group_user,1,1,1,1
+access_book_editorial,book.editorial,model_book_editorial,base.group_user,1,1,1,1
+access_book_category,book.category,model_book_category,base.group_user,1,1,1,1
+access_book_reservation,book.reservation,model_book_reservation,base.group_user,1,1,1,1
+access_book_genre,book.genre,model_book_genre,base.group_user,1,1,1,1
+access_book_tag,book.tag,model_book_tag,base.group_user,1,1,1,1
+access_book_loan,book.loan,model_book_loan,base.group_user,1,1,1,1

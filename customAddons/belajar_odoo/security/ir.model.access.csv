@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_data_siswa,data_siswa,model_data_siswa,,1,1,1,1
+access_data_guru,data_guru,model_data_guru,,1,1,1,1
+access_extrakulikuler_sekolah,extrakulikuler_sekolah,model_exktrakulikuler_sekolah,,1,1,1,1

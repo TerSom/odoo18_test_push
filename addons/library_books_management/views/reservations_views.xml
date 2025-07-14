@@ -1,0 +1,107 @@
+<odoo>
+    <data>
+
+        <record id="reservation_search_view" model="ir.ui.view">
+            <field name="name">book.reservation.search.view</field>
+            <field name="model">book.reservation</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="book_id" />
+                    <field name="partner_id" />
+                    <group>
+                        <filter name="done" string="Not done"
+                            domain="[('done', '=' , False)]" />
+                    </group>
+                    <group>
+                        <filter name="book" string="Book" domain="[('book_id','=','self')]"
+                            context="{'group_by': 'book_id'}" />
+                        <filter name="partner_id" string="Contact"
+                            domain="[('partner_id','=','self')]"
+                            context="{'group_by': 'partner_id'}" />
+                        <group>
+                            <filter name="group_by_date" string="Date"
+                                context="{'group_by': 'date:month'}" />
+                        </group>
+
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="reservation_tree_view" model="ir.ui.view">
+            <field name="name">book.reservation.tree.view</field>
+            <field name="model">book.reservation</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="partner_id" />
+                    <field name="book_id" />
+                    <field name="date" />
+                    <field name="done" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="reservation_form_view" model="ir.ui.view">
+            <field name="name">book.reservation.form.view</field>
+            <field name="model">book.reservation</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="partner_id" />
+                            </group>
+                            <group>
+                                <field name="book_id" />
+                            </group>
+                            <group>
+                                <field name="date" />
+                            </group>
+                            <group>
+                                <field name="done" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Contact information">
+                                <group>
+                                    <group>
+                                        <field name="phone" />
+                                    </group>
+                                    <group>
+                                        <field name="city" />
+                                    </group>
+
+                                    <group>
+                                        <field name="mobile" />
+                                    </group>
+                                    <group>
+                                        <field name="state" />
+                                    </group>
+                                    <group>
+                                        <field name="street" />
+                                    </group>
+                                    <group>
+                                        <field name="country" />
+                                    </group>
+                                    <group>
+                                        <field name="zip" />
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field widget="mail_thread" name="message_ids" />
+                        <field widget="mail_activity" name="activity_ids" />
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="reservation_action" model="ir.actions.act_window">
+            <field name="name">Reservations</field>
+            <field name="res_model">book.reservation</field>
+            <field name="view_mode">search,tree,form</field>
+        </record>
+    </data>
+</odoo>

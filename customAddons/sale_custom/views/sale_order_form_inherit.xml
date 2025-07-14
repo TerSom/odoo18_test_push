@@ -1,0 +1,35 @@
+<odoo>
+    <data>
+
+        <!-- Inherit form view of sale.order -->
+        <record id="view_order_form_custom_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit.custom</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+
+                <!-- Tambahkan field di atas partner_id -->
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="x_custom_field"/>
+                    <field name="x_custom_fields"/>
+                </xpath>
+
+                <!-- Ganti label partner_id -->
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="string">nama perushaan</attribute>
+                </xpath>
+
+                <!-- Tambah Tab Baru -->
+                <xpath expr="//notebook" position="inside">
+                    <page string="Info Tambahan">
+                        <group>
+                            <field name="x_additional_note"/>
+                        </group>
+                    </page>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,39 @@
+<odoo>
+
+    <menuitem id="menu_library" name="Library" />
+
+    <menuitem id="menu_books_list" name="Books" parent="menu_library"
+        action="book_action" sequence="1" />
+
+    <menuitem id="menu_loans_list"
+        name="Loans"
+        action="loan_action"
+        parent="menu_library"
+        sequence="2"
+    />
+
+    <menuitem id="menu_reservations_list"
+        name="Reservations"
+        action="reservation_action"
+        parent="menu_library"
+        sequence="3"
+    />
+
+    <menuitem id="menu_management" name="Configuration" parent="menu_library" sequence="4" />
+
+    <menuitem id="menu_author_list" name="Authors" parent="menu_management"
+        action="author_action" sequence="1" />
+
+    <menuitem id="menu_genres_list" name="Genres" parent="menu_management"
+        action="genre_action" sequence="2" />
+
+    <menuitem id="menu_categories_list" name="Categories" parent="menu_management"
+        action="category_action" sequence="3" />
+
+    <menuitem id="menu_editorials_list" name="Editorials" parent="menu_management"
+        action="editorial_action" sequence="4" />
+
+    <menuitem id="menu_tags_list" name="Tags" parent="menu_management"
+        action="tag_action" sequence="5" />
+
+</odoo>

@@ -1,0 +1,3 @@
+<odoo>
+    <menuitem id="menu_perpus_root" name="Perpustakaan" sequence="10"/>
+</odoo>

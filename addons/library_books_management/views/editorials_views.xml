@@ -1,0 +1,72 @@
+<odoo>
+    <data>
+
+        <record id="editorial_tree_view" model="ir.ui.view">
+            <field name="name">book.editorial.tree.view</field>
+            <field name="model">book.editorial</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="partner_id" />
+                    <field name="city" />
+                    <field name="state" />
+                    <field name="country" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="editorial_form_view" model="ir.ui.view">
+            <field name="name">book.editorial.form.view</field>
+            <field name="model">book.editorial</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="partner_id" />
+                        </group>
+                        <notebook>
+                            <page string="Books">
+                                <field name="book_id">
+                                    <tree>
+                                        <field name="name" />
+                                        <field name="author" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Other information">
+                                <group>
+                                    <group>
+                                        <field name="phone" />
+                                    </group>
+                                    <group>
+                                        <field name="city" />
+                                    </group>
+                                    <group>
+                                        <field name="mobile" />
+                                    </group>
+                                    <group>
+                                        <field name="state" />
+                                    </group>
+                                    <group>
+                                        <field name="street" />
+                                    </group>
+                                    <group>
+                                        <field name="country" />
+                                    </group>
+                                    <group>
+                                        <field name="zip" />
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="editorial_action" model="ir.actions.act_window">
+            <field name="name">Editorials</field>
+            <field name="res_model">book.editorial</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>
