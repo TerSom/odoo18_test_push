@@ -16,9 +16,15 @@ class LibraryStudent(models.Model):
     nis = fields.Char(string='NIS', required=True)
     tanggalPinjam = fields.Date(string='Tanggal Pinjam', required=True)
     tanggalKembali = fields.Date(string='Tanggal Kembali', required=True)
-    email = fields.Char(string='Email', required=True)
-    phone = fields.Char(string='Phone', required=True)
 
+    phone = fields.Char(string='Phone', required=True)
+    state = fields.Selection([
+    ('draft', 'Draft'),
+    ('submitted', 'Submitted'),
+    ('approved', 'Approved'),
+    ('refused', 'Refused'),
+    ], string='Status', default='draft', tracking=True)
+    
     durasiPinjaman = fields.Integer(
         string="Lama Peminjaman (hari)",
         compute='durasiHari',
@@ -32,6 +38,20 @@ class LibraryStudent(models.Model):
         'book_id',
         string='Borrowed Books'
     )
+    
+    def action_submit(self):
+        self.state = 'submitted'
+
+    def action_approve(self):
+        if not self.env.user.has_group('perpustakaan_custom.group_library_manager'):
+            raise ValidationError("Hanya manager yang boleh approve.")
+        self.state = 'approved'
+
+    def action_refuse(self):
+        if not self.env.user.has_group('perpustakaan_custom.group_library_manager'):
+            raise ValidationError("Hanya manager yang boleh refuse.")
+        self.state = 'refused'
+
 
     @api.depends('tanggalPinjam', 'tanggalKembali')
     def durasiHari(self):   

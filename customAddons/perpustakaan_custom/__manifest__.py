@@ -22,6 +22,7 @@ Long description of module's purpose
 
     # always loaded
     'data': [
+        'security/security.xml',
         'security/ir.model.access.csv',
         'views/book_views.xml',
         'views/student_views.xml',
@@ -31,7 +32,7 @@ Long description of module's purpose
         "data/ir_sequence_Student.xml",
         'data/ir_sequence_Teacher.xml',
         'report/perpustakaan_teacher_report_template.xml',
-        'report/perpustakaan_teacher_report_views.xml'
+        'report/perpustakaan_teacher_report_views.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
