@@ -16,8 +16,8 @@ class LibraryStudent(models.Model):
     nis = fields.Char(string='NIS', required=True)
     tanggalPinjam = fields.Date(string='Tanggal Pinjam', required=True)
     tanggalKembali = fields.Date(string='Tanggal Kembali', required=True)
-
     phone = fields.Char(string='Phone', required=True)
+    
     state = fields.Selection([
     ('draft', 'Draft'),
     ('submitted', 'Submitted'),
@@ -43,13 +43,9 @@ class LibraryStudent(models.Model):
         self.state = 'submitted'
 
     def action_approve(self):
-        if not self.env.user.has_group('perpustakaan_custom.group_library_manager'):
-            raise ValidationError("Hanya manager yang boleh approve.")
         self.state = 'approved'
 
     def action_refuse(self):
-        if not self.env.user.has_group('perpustakaan_custom.group_library_manager'):
-            raise ValidationError("Hanya manager yang boleh refuse.")
         self.state = 'refused'
 
 

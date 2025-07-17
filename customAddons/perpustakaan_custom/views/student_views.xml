@@ -23,28 +23,30 @@
         <field name="arch" type="xml">
             <form string="Student">
                 <header>
-                <field name="state" widget="statusbar"
-                    statusbar_visible="draft,submitted,approved,refused" />
-                    
                     <button name="action_submit"
                         string="Submit"
                         type="object"
                         class="btn-primary"
-                    />
+                        invisible="state != 'draft'"
+                        />
 
                     <button name="action_approve"
                         string="Approve"
                         type="object"
                         class="btn-success"
-                        groups="perpustakaan_custom.group_library_manager"
-                    />
-
-                    <button name="action_refuse"
+                        invisible="state != 'submitted'"
+                        />
+                        
+                        <button name="action_refuse"
                         string="Refuse"
                         type="object"
                         class="btn-danger"
-                        groups="perpustakaan_custom.group_library_manager"
-                    />
+                        invisible="state != 'submitted'"
+                    
+                        />
+
+                    <field name="state" widget="statusbar"
+                        statusbar_visible="draft,submitted,approved,refused" />
                 </header>
                 <sheet>
                     <group>
