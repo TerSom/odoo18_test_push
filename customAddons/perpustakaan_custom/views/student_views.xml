@@ -47,9 +47,11 @@
 
                     <field name="state" widget="statusbar"
                         statusbar_visible="draft,submitted,approved,refused" />
-                </header>
-                <sheet>
-                    <group>
+                    </header>
+                    <sheet>
+                        <group>
+                        <widget name="web_ribbon" title="approved" bg_color="bg-success" invisible="state != 'approved'" ></widget>
+                        <widget name="web_ribbon" title="refused" bg_color="bg-danger" invisible="state != 'refused'" ></widget>
                         <field name="reference" />
                         <field name="name" />
                         <field name="nis" />

@@ -18,7 +18,7 @@ class LibraryTeacher(models.Model):
     ('submitted', 'Submitted'),
     ('approved', 'Approved'),
     ('refused', 'Refused'),
-    ], string='Status', default='draft', tracking=True)
+    ], string='Status', default='draft', tracking=True, store=True)
 
     durasiPinjaman = fields.Integer(
         string="Lama Peminjaman (hari)",
