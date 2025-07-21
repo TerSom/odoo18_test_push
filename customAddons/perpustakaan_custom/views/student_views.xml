@@ -49,9 +49,9 @@
                         statusbar_visible="draft,submitted,approved,refused" />
                     </header>
                     <sheet>
-                        <group>
                         <widget name="web_ribbon" title="approved" bg_color="bg-success" invisible="state != 'approved'" ></widget>
                         <widget name="web_ribbon" title="refused" bg_color="bg-danger" invisible="state != 'refused'" ></widget>
+                        <group>
                         <field name="reference" />
                         <field name="name" />
                         <field name="nis" />
