@@ -1,5 +1,5 @@
 {
-    'name': "Test model",
+    'name': "Test modell",
     'version': '1.0',
     'depends': ['base'],
     'author': "Author Name",
