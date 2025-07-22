@@ -1,7 +1,10 @@
 {
     'name': "Test modell",
     'version': '1.0',
-    'depends': ['base'],
+    'depends': [
+        'base',
+        
+        ],
     'author': "Author Name",
     'category': 'Category',
     'description': """
