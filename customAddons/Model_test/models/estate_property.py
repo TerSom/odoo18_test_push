@@ -1,5 +1,6 @@
 from odoo import _, models, fields,api  
 from dateutil.relativedelta import relativedelta
+from odoo.exceptions import ValidationError
 
 class EstateProperty(models.Model):
     _name = 'estate.property'
@@ -9,8 +10,8 @@ class EstateProperty(models.Model):
     description = fields.Text()
     postcode = fields.Char()
     date_availability = fields.Date(copy=False, degfault=lambda self: fields.Datetime.now() + relativedelta(months=3))
-    expected_price = fields.Float(required=True)
-    selling_price = fields.Float(readonly=True,copy=False,default=10000)
+    expected_price = fields.Float(required=True,default=10000)
+    selling_price = fields.Float(readonly=True,copy=False)
     bedrooms = fields.Integer(default=2)
     facades = fields.Integer()
     garage = fields.Boolean()
@@ -45,9 +46,23 @@ class EstateProperty(models.Model):
     property_type_id = fields.Many2one("estate.property.type", string="property type")
     property_tag_ids = fields.Many2many("estate.property.tag", string="property tag")
     salesperson_id = fields.Many2one('res.users', string='Salesperson', index=True, default=lambda self: self.env.user)
-    buyer_id = fields.Many2one('res.users', string='Buyer',copy=False ,index=True, )
+    buyer_id = fields.Many2one('res.partner', string='Buyer',copy=False ,index=True, )
     offer_ids = fields.One2many ("estate.property.offer", "property_id", string="Offers")
     
+    
+    def action_sold(self):
+        for record in self:
+            if record.state == 'cancelled':
+                raise ValidationError("Sudah dibatalkan, tidak bisa dijual.")
+        record.state = 'sold'
+        return True
+    
+    def action_cancel(self):
+        for record in self:
+            if record.state == 'sold':
+                raise ValidationError("Sudah dijual, tidak bisa dibatalkan.")
+        record.state = 'cancelled'
+        return True
     
     @api.onchange('garden')
     def _onchange_garden(self):

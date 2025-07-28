@@ -1,5 +1,6 @@
 from odoo import models,fields,api
 from datetime import timedelta
+from odoo.exceptions import ValidationError
 
 class EstatePropertyOffer(models.Model):
     _name = "estate.property.offer"
@@ -33,3 +34,16 @@ class EstatePropertyOffer(models.Model):
                 record.validity = delta.days
             else:
                 record.validity = (record.date_deadline - fields.Date.today()).days
+
+    def action_Accept(self):
+        for record in self:
+            if record.property_id.state == 'sold':
+                raise ValidationError("tidak bisa diterima sudah sold")
+            record.status = 'accepted'
+            record.property_id.buyer_id = record.partner_id
+            record.property_id.selling_price = record.price
+        return True
+    
+    def action_Refuse(self):
+        for record in self:
+            record.status = 'refused'
