@@ -49,6 +49,11 @@ class EstateProperty(models.Model):
     buyer_id = fields.Many2one('res.partner', string='Buyer',copy=False ,index=True, )
     offer_ids = fields.One2many ("estate.property.offer", "property_id", string="Offers")
     
+    _sql_constraints = [
+        ('expected_price_positive', 'CHECK(expected_price >= 0)',
+         'The percentage of an analytic distribution should be between 0 and 100.')
+    ]
+    
     
     def action_sold(self):
         for record in self:
